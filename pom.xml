@@ -15,9 +15,19 @@
             <version>2.2-m4</version>
         </dependency>
         <dependency>
+            <groupId>org.openehealth.ipf.modules</groupId>
+            <artifactId>modules-cda</artifactId>
+            <version>2.2-m4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openehealth.ipf.platform-camel</groupId>
+            <artifactId>platform-camel-cda</artifactId>
+            <version>2.2-m4</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>3.0.3.RELEASE</version>
+            <version>3.0.4.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>

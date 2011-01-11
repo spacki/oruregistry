@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+  <templateId root="1.3.6.1.4.1.19376.1.2.21"/>
+  <id extension="acc3" root="2.16.840.1.113883.3.933"/>
+  <code code="19005-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Radiology Report"/>
+  <title>Good Health Clinic Consultation Note</title>
+  <effectiveTime value="20100218151500"/>
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+  <languageCode code="fr-FR"/>
+  <recordTarget>
+    <patientRole>
+      <id extension="00107379" root="2.16.840.1.113883.19.5"/>
+      <addr><streetAddressLine>MEZAN GAZEC </streetAddressLine><city>EDERN</city><postalCode>29510</postalCode><country/><state/></addr>
+      <patient>
+        <name><given>test3</given><family>ztest31</family></name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="19650430"/>
+      </patient>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20100218151500"/>
+    <assignedAuthor>
+      <id extension="01102196" root="2.16.840.1.113883.19.5"/>
+      <assignedPerson>
+        <name><given>Michel</given><family>NONENT</family><suffix/></name>
+      </assignedPerson>
+      <representedOrganization>
+        <id root="1.3.5.35.1.4436.7"/>
+        <name/>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id root="2.16.840.1.113883.3.37.4.1.1.2.411.1"/>
+        <name>HOSP</name>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <component>
+    <nonXMLBody>
+      <text representation="B64" mediaType="text/plain">Title: CTABD-echo un ou plusieurs organes intra-abdominaux
+Report Text
+&lt;9>CENTRE HOSPITALIER UNIVERSITAIRE DE BREST
+Service de Radiologie et Imagerie M&lt;233>dicale
+CHU La Cavale Blanche
+29609 BREST CEDEX&lt;9>
+18/02/2010&lt;9>
+&lt;9>
+Nom :&lt;9>PHILIPPE ANDRE&lt;9>
+N&lt;233>(e) :&lt;9>30/04/1965&lt;9>
+Rue :&lt;9>Mezan Gazec&lt;9>
+Localit&lt;233> :&lt;9>29510 Edern&lt;9>
+Service ou m&lt;233>decin demandeur : HC ENDOCRINOLOGIE 
+R&lt;233>f. : 10017244   RH
+Echographe TOSHIBA Aplio XG mis en route le 12/02/2008
+ECHOGRAPHIE ABDOMINO-PELVIENNE
+Indication : 
+Cytolyse h&lt;233>patique. 
+Douleurs de l'hypochondre droit. 
+R&lt;233>sultats : 
+H&lt;233>patom&lt;233>galie homog&lt;232>ne &lt;224> contours r&lt;233>guliers, avec une fl&lt;232>che lobaire gauche &lt;224> 10 cm, une fl&lt;232>che lobaire droite &lt;224> 20 cm. 
+Echostructure hyper-&lt;233>chog&lt;232>ne, st&lt;233>atosique. 
+V&lt;233>sicule biliaire alithiasique &lt;224> parois fines. 
+Absence de dilatation des voies biliaires intra ou extra-h&lt;233>patiques. 
+Contr&lt;244>le satisfaisant des parenchymes r&lt;233>naux, pancr&lt;233>atique et spl&lt;233>nique. 
+Absence d'&lt;233>panchement intra ou r&lt;233>tro p&lt;233>riton&lt;233>al. 
+Au total : 
+H&lt;233>patom&lt;233>galie st&lt;233>atosique. 
+LESOEUR  MELANIE  Interne, 
+</text>
+    </nonXMLBody>
+  </component>
+</ClinicalDocument>

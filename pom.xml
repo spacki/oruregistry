@@ -8,22 +8,31 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+		<ipf-version>2.2-m5</ipf-version>
+	</properties>
     <dependencies>
         <dependency>
             <groupId>org.openehealth.ipf.platform-camel</groupId>
             <artifactId>platform-camel-core</artifactId>
-            <version>2.2-m4</version>
+            <version>${ipf-version}</version>
         </dependency>
         <dependency>
             <groupId>org.openehealth.ipf.modules</groupId>
             <artifactId>modules-cda</artifactId>
-            <version>2.2-m4</version>
+            <version>${ipf-version}</version>
         </dependency>
         <dependency>
             <groupId>org.openehealth.ipf.platform-camel</groupId>
             <artifactId>platform-camel-cda</artifactId>
-            <version>2.2-m4</version>
+            <version>${ipf-version}</version>
         </dependency>
+        <dependency>
+			<groupId>org.openehealth.ipf.platform-camel</groupId>
+			<artifactId>platform-camel-hl7</artifactId>
+			<version>${ipf-version}</version>
+		</dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>

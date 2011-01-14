@@ -3,8 +3,7 @@ package org.openehealth.ipf.ws.oru
 import org.junit.Test
 import org.openehealth.ipf.modules.hl7dsl.MessageAdapters
 import org.openehealth.ipf.modules.hl7dsl.MessageAdapter
-import org.openehealth.ipf.modules.hl7dsl.util.Messages
-import ca.uhn.hl7v2.model.Message
+
 import static junit.framework.Assert.*
 
 /**

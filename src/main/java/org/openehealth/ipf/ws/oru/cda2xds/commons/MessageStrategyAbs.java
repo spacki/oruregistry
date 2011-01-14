@@ -39,7 +39,7 @@ public abstract class MessageStrategyAbs {
 		MetadataBean metaBean = extractData();
 
 		convertDateUTC(metaBean);
-		performPixQuery(metaBean);	
+		//performPixQuery(metaBean);	
 		
 		return metaBean;
 	}

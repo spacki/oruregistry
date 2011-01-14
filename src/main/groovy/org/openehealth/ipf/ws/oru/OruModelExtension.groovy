@@ -9,9 +9,10 @@ class OruModelExtension {
 
     static extensions = {
 
-        ProcessorDefinition.metaClass.output = { String message ->
+        ProcessorDefinition.metaClass.output = { String message, Closure c ->
             return delegate.process {
-                LOG.debug("\n${'-' * 20} ${message} ${'-' * 20}\n${it.in.body}")
+                def payload = c ? c(it.in.body) : it.in.body
+                LOG.debug("\n${'-' * 20} ${message} ${'-' * 20}\n${payload}")
             }
         }
 

@@ -20,7 +20,7 @@ class OruRouteBuilder extends SpringRouteBuilder {
         // Receive ORU message
         from('oruadapter://0.0.0.0:8888')
             // TODO: validate input
-            .output('Received message')
+            .output('Received message', null)
             .to('seda:dispatch')
 
 
@@ -39,7 +39,7 @@ class OruRouteBuilder extends SpringRouteBuilder {
                 .maximumRedeliveries(0)
                 .end()
             .to('bean:globalPatientIdEnricher')
-            .output('Enriched HL7v2 ORU message')
+            .output('Enriched HL7v2 ORU message', null)
             .to('direct:drr-make-cda')
 
 
@@ -53,7 +53,7 @@ class OruRouteBuilder extends SpringRouteBuilder {
                 String cda = ORU2CDAMapper.convertORUtoCDA(oru)
                 it.in.body = cda
             }
-            .output('CDA document')
+            .output('CDA document', null)
             .to('direct:drr-make-iti41')
 
 
@@ -67,7 +67,8 @@ class OruRouteBuilder extends SpringRouteBuilder {
                 ProvideAndRegisterDocumentSetRequestType iti41Request = CDA_TO_EBXML_TRANSLATOR.convert(cda)
                 it.in.body = iti41Request
             }
-            .output('XDS ITI-41 request')
+            .output('XDS ITI-41 request') { JaxbUtils.marshal(it) }
+            .validate().iti41Request()
             .to('direct:drr-send-iti41')
 
 
@@ -77,7 +78,8 @@ class OruRouteBuilder extends SpringRouteBuilder {
                 .maximumRedeliveries(0)
                 .end()
             .to(iti41EndpointUri)
-            .output('XDS ITI-41 response')
+            .output('XDS ITI-41 response', null)
+            .validate().iti41Response()
             .process {
                  RegistryResponseType response = it.in.body
                  if (response.status == Status.SUCCESS.getOpcode30()) {

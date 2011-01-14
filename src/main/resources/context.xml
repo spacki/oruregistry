@@ -23,6 +23,11 @@ http://camel.apache.org/schema/spring/camel-spring.xsd">
         <camel:routeBuilder ref="routeBuilder"/>
     </camel:camelContext>
 
+    <bean name="producerTemplate"
+          factory-bean="camelContext"
+          factory-method="createProducerTemplate" />
+
+
     <bean id="routeBuilder" depends-on="routeModelExtender" class="org.openehealth.ipf.ws.oru.OruRouteBuilder">
         <property name="iti41EndpointUri" value="${iti41.endpoint.uri}"/>
     </bean>
@@ -36,6 +41,8 @@ http://camel.apache.org/schema/spring/camel-spring.xsd">
         <!--<property name="mappingService" ref="mappingService" />-->
     </bean>
 
+    <bean id="xdsModelExtension" class="org.openehealth.ipf.platform.camel.ihe.xds.core.extend.XDSModelExtension" />
+
     <bean id="oruModelExtension"
           class="org.openehealth.ipf.ws.oru.OruModelExtension">
     </bean>
@@ -46,6 +53,7 @@ http://camel.apache.org/schema/spring/camel-spring.xsd">
             <list>
                 <ref bean="coreModelExtension" />
                 <ref bean="hapiModelExtension" />
+                <ref bean="xdsModelExtension" />
                 <ref bean="oruModelExtension" />
             </list>
         </property>

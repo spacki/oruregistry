@@ -1,11 +1,11 @@
 package org.openehealth.ipf.ws.oru
 
-import com.gehc.hcit.ccg.ihe.oru.CdaToEbxmlTranslator
 import org.apache.camel.spring.SpringRouteBuilder
 import org.openehealth.ipf.commons.ihe.xds.core.ebxml.ebxml30.ProvideAndRegisterDocumentSetRequestType
 import org.openehealth.ipf.commons.ihe.xds.core.responses.Status
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.rs.RegistryResponseType
 import org.openehealth.ipf.modules.hl7dsl.MessageAdapter
+import org.openehealth.ipf.ws.oru.cda2xds.oru.CdaToEbxmlTranslator
 
 class OruRouteBuilder extends SpringRouteBuilder {
 

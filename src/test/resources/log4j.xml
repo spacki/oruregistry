@@ -25,14 +25,14 @@
         <layout class="org.apache.log4j.SimpleLayout" />
     </appender>
 
-    <logger name="org.openehealth.ipf">
+    <logger name="org.openehealth.ipf.ws.oru">
         <level value="DEBUG"/>
     </logger>
     
     <logger name="org.apache.activemq">
         <level value="INFO"/>
     </logger>
-    
+
     <root>
         <level value="INFO"/>
         <appender-ref ref="CONSOLE"/>

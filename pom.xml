@@ -25,16 +25,20 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
+         <dependency>
             <groupId>com.gehc.hcit</groupId>
             <artifactId>ihe</artifactId>
             <version>${cda2xds-version}</version>
+            <scope>system</scope>
+            <systemPath>C:/arbeit/projekte/france/arhif/oru/ihe-1.0-SNAPSHOT-with-ipf-2.2-m5.jar</systemPath>
         </dependency>
 
         <dependency>
             <groupId>org.openehealth.ipf.modules</groupId>
             <artifactId>modules-hl7dsl</artifactId>
             <version>2.2-m5-p1</version>
+            <scope>system</scope>
+            <systemPath>C:/arbeit/projekte/france/arhif/oru/modules-hl7dsl-2.2-m5-p1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.openehealth.ipf.platform-camel</groupId>
@@ -75,7 +79,7 @@
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
-                 <!-- This seems to be the only way to add the .groovy source files --> 
+                 <!-- This seems to be the only way to add the .groovy source files -->
                  <!-- in src/main/groovy to the Eclipse build path. -->
                  <!-- The source files have to be excluded binaries explicitly (see maven-jar-plugin config). -->
                 <directory>src/main/groovy</directory>
@@ -155,7 +159,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <repositories>
         <repository>
             <id>openehealth.releases</id>
@@ -211,5 +215,6 @@
             <url>http://hl7api.sourceforge.net/m2</url>
         </repository>
     </repositories>
-    
+
 </project>
+

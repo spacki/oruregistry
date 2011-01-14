@@ -87,7 +87,7 @@ class ORU2CDAMapper {
           // Patient details
           recordTarget {
             patientRole {
-              id(extension:pidSeg[3][1] ?: '', root:pidSeg[3][4][2])
+              id(extension:pidSeg[3](1)[1] ?: '', root:pidSeg[3](1)[4][2])
               patient {
                 name {
                   given(pidSeg[5](0)[2]?.value)

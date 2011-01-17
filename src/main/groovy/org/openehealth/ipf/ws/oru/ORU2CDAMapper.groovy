@@ -128,8 +128,12 @@ class ORU2CDAMapper {
               // TODO: Using ORC Segment, which needs to be included in HL7,
               // can't we get it from PID assigningAuthority?
               representedOrganization {
-                id(extension:orcSeg[10][14][1]?.value ,root:'1.3.5.35.1.4436.7')
-                name(orcSeg[10][14][2]);
+                // changed organization is taken from second OBX segement field 5
+                id(extension:obsGroup.getOBSERVATION(1).OBX[5]?.value ,root:'1.3.5.35.1.4436.7')
+                //id(extension:orcSeg[10][14][1]?.value ,root:'1.3.5.35.1.4436.7')
+                //name(orcSeg[10][14][2]);
+                name(obsGroup.getOBSERVATION(1).OBX[5].value)
+
               }
             }
           }

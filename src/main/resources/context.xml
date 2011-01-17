@@ -27,6 +27,87 @@ http://camel.apache.org/schema/spring/camel-spring.xsd">
           factory-bean="camelContext"
           factory-method="createProducerTemplate" />
 
+    <bean name="propertybuilderBean" class="org.openehealth.ipf.ws.oru.cda2xds.mdmtoxds.PropertyBuilder">
+       <property name="sourceOID" value="${sourceOID}"/>
+        <property name="sourceID" value="${sourceID}"/>
+        <property name="repositoryUniqueId" value="${repositoryUniqueId}"/>
+        <property name="uri" value="${uri}"/>
+		<property name="enableCDAParsing" value="${enableCDAParsing}"/>
+        <property name="languageCode" value="${languageCode}"/>
+        <property name="c32_ClassCodeDisplayName" value="${c32_ClassCodeDisplayName}"/>
+        <property name="c32_ClassCodeNodeRepresentation" value="${c32_ClassCodeNodeRepresentation}"/>
+        <property name="c32_ClassCodeCodingScheme" value="${c32_ClassCodeCodingScheme}"/>
+        <property name="c48_ClassCodeDisplayName" value="${c48_ClassCodeDisplayName}"/>
+        <property name="c48_ClassCodeNodeRepresentation" value="${c48_ClassCodeNodeRepresentation}"/>
+        <property name="c48_ClassCodeCodingScheme" value="${c48_ClassCodeCodingScheme}"/>
+		<property name="xdssd_ClassCodeDisplayName" value="${xdssd_ClassCodeDisplayName}"/>
+		<property name="xdssd_ClassCodeNodeRepresentation" value="${xdssd_ClassCodeNodeRepresentation}"/>
+		<property name="xdssd_ClassCodeCodingScheme" value="${xdssd_ClassCodeCodingScheme}"/>
+		<property name="classCodeDisplayName" value="${classCodeDisplayName}"/>
+        <property name="classCodeNodeRepresentation" value="${classCodeNodeRepresentation}"/>
+        <property name="classCodeCodingScheme" value="${classCodeCodingScheme}"/>
+        <property name="confidentialityCodeDisplayName" value="${confidentialityCodeDisplayName}"/>
+        <property name="confidentialityCodeNodeRepresentation" value="${confidentialityCodeNodeRepresentation}"/>
+        <property name="confidentialityCodeCodingScheme" value="${confidentialityCodeCodingScheme}"/>
+        <property name="cdaR2_FormatCodeDisplayName" value="${cdaR2_FormatCodeDisplayName}"/>
+        <property name="cdaR2_FormatCodeNodeRepresentation" value="${cdaR2_FormatCodeNodeRepresentation}"/>
+        <property name="cdaR2_FormatCodeCodingScheme" value="${cdaR2_FormatCodeCodingScheme}"/>
+        <property name="formatCodeDisplayName" value="${formatCodeDisplayName}"/>
+        <property name="formatCodeNodeRepresentation" value="${formatCodeNodeRepresentation}"/>
+        <property name="formatCodeCodingScheme" value="${formatCodeCodingScheme}"/>
+        <property name="healthcareFacilityCodeDisplayName" value="${healthcareFacilityCodeDisplayName}"/>
+        <property name="healthcareFacilityCodeNodeRepresentation" value="${healthcareFacilityCodeNodeRepresentation}"/>
+        <property name="healthcareFacilityCodeCodingScheme" value="${healthcareFacilityCodeCodingScheme}"/>
+        <property name="practiceCodeDisplayName" value="${practiceCodeDisplayName}"/>
+        <property name="practiceCodeNodeRepresentation" value="${practiceCodeNodeRepresentation}"/>
+        <property name="practiceCodeCodingScheme" value="${practiceCodeCodingScheme}"/>
+        <property name="contentTypeCodeDisplayName" value="${contentTypeCodeDisplayName}"/>
+        <property name="contentTypeCodeNodeRepresentation" value="${contentTypeCodeNodeRepresentation}"/>
+        <property name="contentTypeCodeCodingScheme" value="${contentTypeCodeCodingScheme}"/>
+        <property name="c32_ContentTypeCodeDisplayName" value="${c32_ContentTypeCodeDisplayName}"/>
+        <property name="c32_ContentTypeCodeNodeRepresentation" value="${c32_ContentTypeCodeNodeRepresentation}"/>
+        <property name="c32_ContentTypeCodeCodingScheme" value="${c32_ContentTypeCodeCodingScheme}"/>
+        <property name="c48_ContentTypeCodeDisplayName" value="${c48_ContentTypeCodeDisplayName}"/>
+        <property name="c48_ContentTypeCodeNodeRepresentation" value="${c48_ContentTypeCodeNodeRepresentation}"/>
+        <property name="c48_ContentTypeCodeCodingScheme" value="${c48_ContentTypeCodeCodingScheme}"/>
+		<property name="xdssd_ContentTypeCodeDisplayName" value="${xdssd_ContentTypeCodeDisplayName}"/>
+		<property name="xdssd_ContentTypeCodeNodeRepresentation" value="${xdssd_ContentTypeCodeNodeRepresentation}"/>
+		<property name="xdssd_ContentTypeCodeCodingScheme" value="${xdssd_ContentTypeCodeCodingScheme}"/>
+		<property name="c32_TypeCodeDisplayName" value="${c32_TypeCodeDisplayName}"/>
+        <property name="c32_TypeCodeNodeRepresentation" value="${c32_TypeCodeNodeRepresentation}"/>
+        <property name="c32_TypeCodeCodingScheme" value="${c32_TypeCodeCodingScheme}"/>
+        <property name="c48_TypeCodeDisplayName" value="${c48_TypeCodeDisplayName}"/>
+        <property name="c48_TypeCodeNodeRepresentation" value="${c48_TypeCodeNodeRepresentation}"/>
+        <property name="c48_TypeCodeCodingScheme" value="${c48_TypeCodeCodingScheme}"/>
+		<property name="xdssd_TypeCodeDisplayName" value="${xdssd_TypeCodeDisplayName}"/>
+		<property name="xdssd_TypeCodeNodeRepresentation" value="${xdssd_TypeCodeNodeRepresentation}"/>
+		<property name="xdssd_TypeCodeCodingScheme" value="${xdssd_TypeCodeCodingScheme}"/>
+		<property name="typeCodeDisplayName" value="${typeCodeDisplayName}"/>
+        <property name="typeCodeNodeRepresentation" value="${typeCodeNodeRepresentation}"/>
+        <property name="typeCodeCodingScheme" value="${typeCodeCodingScheme}"/>
+        <!--Properties added for ORU messages  -->
+        <property name="authorRole" value="${authorRole}"/>
+		<property name="authorSpeciality" value="${authorSpeciality}"/>
+		<property name="ldsTemplateId" value="${ldsTemplateId}"/>
+		<property name="lds_ClassCodeDisplayName" value="${lds_ClassCodeDisplayName}"/>
+		<property name="lds_ClassCodeNodeRepresentation" value="${lds_ClassCodeNodeRepresentation}"/>
+		<property name="lds_ClassCodeCodingScheme" value="${lds_ClassCodeCodingScheme}"/>
+		<property name="lds_ContentTypeCodeDisplayName" value="${lds_ContentTypeCodeDisplayName}"/>
+		<property name="lds_ContentTypeCodeNodeRepresentation" value="${lds_ContentTypeCodeNodeRepresentation}"/>
+		<property name="lds_ContentTypeCodeCodingScheme" value="${lds_ContentTypeCodeCodingScheme}"/>
+		<property name="lds_FormatCodeDisplayName" value="${lds_FormatCodeDisplayName}"/>
+		<property name="lds_FormatCodeNodeRepresentation" value="${lds_FormatCodeNodeRepresentation}"/>
+		<property name="lds_FormatCodeCodingScheme" value="${lds_FormatCodeCodingScheme}"/>
+		<property name="lds_TypeCodeDisplayName" value="${lds_TypeCodeDisplayName}"/>
+		<property name="lds_TypeCodeNodeRepresentation" value="${lds_TypeCodeNodeRepresentation}"/>
+		<property name="lds_TypeCodeCodingScheme" value="${lds_TypeCodeCodingScheme}"/>
+		<!--Properties added for ORU messages  -->
+		<property name="eventCodeDisplayName" value="${eventCodeDisplayName}"/>
+		<property name="eventCodeNodeRepresentation" value="${eventCodeNodeRepresentation}"/>
+		<property name="eventCodeCodingScheme" value="${eventCodeCodingScheme}"/>
+    </bean>
+
+
 
     <bean id="routeBuilder" depends-on="routeModelExtender" class="org.openehealth.ipf.ws.oru.OruRouteBuilder">
         <property name="iti41EndpointUri" value="${iti41.endpoint.uri}"/>

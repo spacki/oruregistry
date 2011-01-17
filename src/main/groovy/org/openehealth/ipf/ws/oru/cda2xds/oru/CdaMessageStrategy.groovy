@@ -95,6 +95,7 @@ public class CdaMessageStrategy extends MessageStrategyAbs {
 			mBean.setAuthorSpecialty(PropertyBuilder.getAuthorSpeciality())
 			
 			//Check if the document type is Labor and Delivery Summary
+            println "Lds template ID: " + PropertyBuilder.getLdsTemplateId()
 			def ldsFormatCodes = 
 				clinicalDocument.templateId.findAll {it.@root.text().equals(PropertyBuilder.getLdsTemplateId())}
 			//Set the flag if message type is Labor and Delivery Summary
@@ -159,7 +160,8 @@ public class CdaMessageStrategy extends MessageStrategyAbs {
 			
 			//Patient Id
 			mBean.setSourcePatientId(clinicalDocument.recordTarget.patientRole.id.@extension.text())
-			mBean.setSourcePatientOId(PIXConfiguration.localAssigningAuthority)
+			//mBean.setSourcePatientOId(PIXConfiguration.localAssigningAuthority)
+            mBean.setSourcePatientOId(clinicalDocument.recordTarget.patientRole.id.@root.text())
 			//clinicalDocument.recordTarget.patientRole.id.@root.text()
 			mBean.setSourcePatientName(clinicalDocument.recordTarget?.patientRole?.patient?.name?.family.text() + "^" +
 									clinicalDocument.recordTarget?.patientRole?.patient?.name?.given.text())

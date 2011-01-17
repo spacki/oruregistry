@@ -10,6 +10,7 @@ import org.openehealth.ipf.platform.camel.ihe.mllp.core.MllpComponent
 import org.openehealth.ipf.modules.hl7.AckTypeCode
 import org.openehealth.ipf.commons.ihe.xds.core.stub.ebrs30.rs.RegistryError
 import org.openehealth.ipf.modules.hl7.HL7v2Exception
+
 import org.openehealth.ipf.modules.hl7.CompositeHL7v2Exception
 
 class OruRouteBuilder extends SpringRouteBuilder {
@@ -28,7 +29,10 @@ class OruRouteBuilder extends SpringRouteBuilder {
             .output('Received message', null)
             .to('seda:dispatch')
             .process {
-                // let the IPF automatically generate an ACK when no error occurred
+                if (! it.in.body.empty) {
+                    throw new CompositeHL7v2Exception(it.in.body.collect { String s -> new HL7v2Exception(s) })
+                }
+            
                 it.in.body = null
                 it.in.headers[MllpComponent.ACK_TYPE_CODE_HEADER] = AckTypeCode.AA
             }
@@ -37,7 +41,8 @@ class OruRouteBuilder extends SpringRouteBuilder {
         // Dispatch ORU message to the two branches
         from('seda:dispatch')
             .multicast()
-                .stopOnException()
+                .aggregationStrategy(new OruAggregationStrategy())
+                .parallelProcessing()
                 .to('direct:drr', 'direct:gpportal')
 
 
@@ -93,15 +98,14 @@ class OruRouteBuilder extends SpringRouteBuilder {
             .process {
                 RegistryResponseType response = it.in.body
 
-                // status not OK -- collect error info to generate a NAK
+                it.in.body = []
                 if (response.status != Status.SUCCESS.getOpcode30()) {
-                    def exceptions = []
                     for (RegistryError error : response.registryErrorList?.registryError) {
-                        exceptions << new HL7v2Exception(createErrorMessage(error))
+                        it.in.body << createXdsErrorMessage(error)
                     }
-                    throw exceptions ?
-                        new CompositeHL7v2Exception('XDS registry/repository returned error', exceptions as List) :
-                        new HL7v2Exception('XDS transaction failed for unknown reason')
+                    if (it.in.body.empty) {
+                        it.in.body = ['XDS transaction failed for unknown reason']
+                    }
                 }
             }
 
@@ -112,14 +116,46 @@ class OruRouteBuilder extends SpringRouteBuilder {
             .onException(Exception.class)
                 .maximumRedeliveries(0)
                 .end()
-            .process { /* TODO */ }
+            .to('direct:gpportal-call-ws')
+            .process {
+                def xml = new XmlSlurper(false, true).parseText(it.in.body)
+                xml.declareNamespace(
+                    '*'   : 'http://gehcit.com/platform/cws/oru/types',
+                    'xsi' : 'http://www.w3.org/2001/XMLSchema-instance',
+                    'xsd' : 'http://www.w3.org/2001/XMLSchema')
+
+                it.in.body = []
+                if (xml.status.text() != 'SUCCESS') {
+                    for (error in xml.errordescription) {
+                        it.in.body << error.text()
+                    }
+                    if (it.in.body.empty) {
+                        it.in.body = ['GPPortal failed for unknown reason']
+                    }
+                }
+            }
+
+
+        // TODO: REPLACE WITH REAL WEB SERVICE ROUTE
+        from('direct:gpportal-call-ws')
+            .setBody(constant('''
+                <Q1:ORUResponse xsi:schemaLocation="http://gehcit.com/platform/cws/oru/types ORURegistry.xsd"
+                                xmlns:Q1="http://gehcit.com/platform/cws/oru/types"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <Q1:status>FAILURE</Q1:status>
+                    <Q1:errordescription>descr 1</Q1:errordescription>
+                    <Q1:errordescription>descr 2</Q1:errordescription>
+                    <Q1:errordescription>descr 3</Q1:errordescription>
+                    <Q1:errordescription>descr 4</Q1:errordescription>
+                </Q1:ORUResponse>
+            '''))
     }
 
 
     /**
      * Creates a string representation of an XDS registry error.
      */
-    static String createErrorMessage(RegistryError error) {
+    static String createXdsErrorMessage(RegistryError error) {
         StringBuilder sb = new StringBuilder()
             .append(error.severity.substring(error.severity.lastIndexOf(':') + 1))
             .append(' ')
